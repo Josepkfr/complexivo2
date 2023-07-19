@@ -50,6 +50,8 @@ import {
 } from "../feature/institucion-beneficiaria/list/list-institucion-beneficiaria.component";
 import { ConfiguracionComponent } from '../feature/portafolio/configuracion/list/configuracion.component';
 import { ConfiguracionArchivedComponent } from '../feature/portafolio/configuracion/configuracion-archived/configuracion-archived.component';
+import { CartaCompromisoComponent } from '../feature/estudiante/carta-compromiso/carta-compromiso.component';
+import { AsistenciaComponent } from '../feature/estudiante/asistencia/asistencia.component';
 
 const routes: Routes = [
   { path: 'upload', component: UploadComponent },
@@ -590,14 +592,49 @@ const routes: Routes = [
       //         },
       //       ],
       //     },
+      {
+        path: 'estudiante',
+        children: [
+          { path: '', redirectTo: 'informe-final-estudiante', pathMatch: 'full' },
+          {
+            path: 'informe-final-estudiante',
+            children: [
+              {
+                path: '',
+                redirectTo: 'list',
+                pathMatch: 'full',
+              },
+              {
+                path: 'list',
+                children: [
+                  {
+                    path: '',
+                    component: InformeFinalEstudianteComponent,
+                  },
+                  {
+                    path: 'archived',
+                    component: InformeFinalEstudianteComponent,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            path:'carta-compromiso',
+            component: CartaCompromisoComponent
+          },
+          {
+            path:'asistencia',
+            component: AsistenciaComponent
+          }
 
 
       //   ],
       // },
 
     ],
-  },
-];
+  }
+]}]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
